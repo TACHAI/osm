@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chaoxing.osm.dao.live.LiveMapper" >
+  <resultMap id="BaseResultMap" type="com.chaoxing.osm.bean.po.live.Live" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="replay" property="replay" jdbcType="INTEGER" />
+    <result column="auther" property="auther" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="pv" property="pv" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="unit_uuid" property="unitUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, cover, replay, auther, video, introduction, address, create_time, update_time, 
+    is_delete, pv, status, unit_uuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_live
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_live
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chaoxing.osm.bean.po.live.Live" >
+    insert into t_live (id, title, cover, 
+      replay, auther, video, 
+      introduction, address, create_time, 
+      update_time, is_delete, pv, 
+      status, unit_uuid)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{replay,jdbcType=INTEGER}, #{auther,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, #{pv,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{unitUuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chaoxing.osm.bean.po.live.Live" >
+    insert into t_live
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="replay != null" >
+        replay,
+      </if>
+      <if test="auther != null" >
+        auther,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="pv != null" >
+        pv,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        #{replay,jdbcType=INTEGER},
+      </if>
+      <if test="auther != null" >
+        #{auther,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="pv != null" >
+        #{pv,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chaoxing.osm.bean.po.live.Live" >
+    update t_live
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        replay = #{replay,jdbcType=INTEGER},
+      </if>
+      <if test="auther != null" >
+        auther = #{auther,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="pv != null" >
+        pv = #{pv,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid = #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chaoxing.osm.bean.po.live.Live" >
+    update t_live
+    set title = #{title,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      replay = #{replay,jdbcType=INTEGER},
+      auther = #{auther,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      pv = #{pv,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      unit_uuid = #{unitUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectList" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_live
+    <where>
+      is_delete=0
+      <if test="liveName!=''and liveName!=null">
+        and title like "%"#{liveName}"%"
+      </if>
+      <if test="uuid!=''and uuid!=null">
+        and unit_uuid =#{uuid}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+  <select id="selectListfore" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_live
+    <where>
+      is_delete=0 and status=2
+      <if test="liveName!=''and liveName!=null">
+        and title like "%"#{liveName}"%"
+      </if>
+      <if test="uuid!=''and uuid!=null">
+        and unit_uuid =#{uuid}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+</mapper>

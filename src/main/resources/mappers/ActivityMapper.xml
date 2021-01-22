@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chaoxing.osm.dao.activity.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.chaoxing.osm.bean.po.activity.Activity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="auther" property="auther" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="activitytime" property="activitytime" jdbcType="TIMESTAMP" />
+    <result column="organizer" property="organizer" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="unit_uuid" property="unitUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, auther, address, cover, activitytime, organizer, detail, status, create_time, 
+    update_time, is_delete, unit_uuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chaoxing.osm.bean.po.activity.Activity" >
+    insert into t_activity (id, title, auther, 
+      address, cover, activitytime, 
+      organizer, detail, status, 
+      create_time, update_time, is_delete, 
+      unit_uuid)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{auther,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{activitytime,jdbcType=TIMESTAMP}, 
+      #{organizer,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, 
+      #{unitUuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chaoxing.osm.bean.po.activity.Activity" >
+    insert into t_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="auther != null" >
+        auther,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="activitytime != null" >
+        activitytime,
+      </if>
+      <if test="organizer != null" >
+        organizer,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="auther != null" >
+        #{auther,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytime != null" >
+        #{activitytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organizer != null" >
+        #{organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chaoxing.osm.bean.po.activity.Activity" >
+    update t_activity
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="auther != null" >
+        auther = #{auther,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="activitytime != null" >
+        activitytime = #{activitytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organizer != null" >
+        organizer = #{organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid = #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chaoxing.osm.bean.po.activity.Activity" >
+    update t_activity
+    set title = #{title,jdbcType=VARCHAR},
+      auther = #{auther,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      activitytime = #{activitytime,jdbcType=TIMESTAMP},
+      organizer = #{organizer,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      unit_uuid = #{unitUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="map" >
+    select <include refid="Base_Column_List"/>
+    from activity
+    <where>
+      is_delete=0
+      <if test="uuid!=''" >
+       and unit_uuid = #{uuid}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+</mapper>

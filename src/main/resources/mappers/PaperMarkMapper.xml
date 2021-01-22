@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chaoxing.osm.dao.test.PaperMarkMapper" >
+  <resultMap id="BaseResultMap" type="com.chaoxing.osm.bean.po.test.PaperMark" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="wx_user_id" property="wxUserId" jdbcType="INTEGER" />
+    <result column="test_paper_id" property="testPaperId" jdbcType="INTEGER" />
+    <result column="mark" property="mark" jdbcType="INTEGER" />
+    <result column="cost_time" property="costTime" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, wx_user_id, test_paper_id, mark, cost_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_test_paper_mark
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_test_paper_mark
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chaoxing.osm.bean.po.test.PaperMark" >
+    insert into t_test_paper_mark (id, wx_user_id, test_paper_id, 
+      mark, cost_time, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{wxUserId,jdbcType=INTEGER}, #{testPaperId,jdbcType=INTEGER}, 
+      #{mark,jdbcType=INTEGER}, #{costTime,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chaoxing.osm.bean.po.test.PaperMark" >
+    insert into t_test_paper_mark
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="wxUserId != null" >
+        wx_user_id,
+      </if>
+      <if test="testPaperId != null" >
+        test_paper_id,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+      <if test="costTime != null" >
+        cost_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wxUserId != null" >
+        #{wxUserId,jdbcType=INTEGER},
+      </if>
+      <if test="testPaperId != null" >
+        #{testPaperId,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="costTime != null" >
+        #{costTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chaoxing.osm.bean.po.test.PaperMark" >
+    update t_test_paper_mark
+    <set >
+      <if test="wxUserId != null" >
+        wx_user_id = #{wxUserId,jdbcType=INTEGER},
+      </if>
+      <if test="testPaperId != null" >
+        test_paper_id = #{testPaperId,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=INTEGER},
+      </if>
+      <if test="costTime != null" >
+        cost_time = #{costTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chaoxing.osm.bean.po.test.PaperMark" >
+    update t_test_paper_mark
+    set wx_user_id = #{wxUserId,jdbcType=INTEGER},
+      test_paper_id = #{testPaperId,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=INTEGER},
+      cost_time = #{costTime,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPaperId" resultType="com.chaoxing.osm.bean.dto.test.PaperMarkDTO" parameterType="map">
+    SELECT m.id as id, w.id as wxUserId,m.test_paper_id as testPaperId,paper.name as paperName,w.pickname as pickname,m.mark as mark,w.headimgurl as headimgurl,
+    m.create_time as createTime, m.cost_time as costTime
+    from t_test_paper_mark m left join t_wx_user w on m.wx_user_id =w.id left join t_test_paper paper on m.test_paper_id = paper.id
+    where m.test_paper_id= #{paperId}
+    order by m.mark desc,costTime asc limit 0,20
+  </select>
+  <select id="selectByPaperIdAndUserId" resultMap="BaseResultMap" parameterType="map">
+    select <include refid="Base_Column_List"/>
+    from t_test_paper_mark
+    where test_paper_id = #{paperId,jdbcType=INTEGER}
+    and wx_user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectOrderByPaperId" resultType="com.chaoxing.osm.bean.dto.test.PaperMarkDTO" parameterType="map">
+    SELECT m.id as id, w.id as wxUserId,m.test_paper_id as testPaperId,paper.name as paperName,w.pickname as pickname,m.mark as mark,w.headimgurl as headimgurl,
+    m.create_time as createTime, m.cost_time as costTime
+    from t_test_paper_mark m left join t_wx_user w on m.wx_user_id =w.id left join t_test_paper paper on m.test_paper_id = paper.id
+    where m.test_paper_id= #{paperId}
+    order by m.mark desc,costTime asc
+  </select>
+</mapper>

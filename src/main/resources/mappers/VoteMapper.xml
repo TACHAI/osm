@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chaoxing.osm.dao.vote.VoteMapper" >
+  <resultMap id="BaseResultMap" type="com.chaoxing.osm.bean.po.vote.Vote" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="organizer" property="organizer" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="votetime" property="votetime" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="vstart_time" property="vstartTime" jdbcType="TIMESTAMP" />
+    <result column="vend_time" property="vendTime" jdbcType="TIMESTAMP" />
+    <result column="ustart_time" property="ustartTime" jdbcType="TIMESTAMP" />
+    <result column="uend_time" property="uendTime" jdbcType="TIMESTAMP" />
+    <result column="unit_uuid" property="unitUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, introduction, cover, organizer, status, votetime, create_time, update_time, 
+    is_delete, vstart_time, vend_time, ustart_time, uend_time, unit_uuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_vote
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_vote
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chaoxing.osm.bean.po.vote.Vote" >
+    insert into t_vote (id, name, introduction, 
+      cover, organizer, status, 
+      votetime, create_time, update_time, 
+      is_delete, vstart_time, vend_time, 
+      ustart_time, uend_time, unit_uuid
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{organizer,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{votetime,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDelete,jdbcType=INTEGER}, #{vstartTime,jdbcType=TIMESTAMP}, #{vendTime,jdbcType=TIMESTAMP}, 
+      #{ustartTime,jdbcType=TIMESTAMP}, #{uendTime,jdbcType=TIMESTAMP}, #{unitUuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chaoxing.osm.bean.po.vote.Vote" >
+    insert into t_vote
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="organizer != null" >
+        organizer,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="votetime != null" >
+        votetime,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="vstartTime != null" >
+        vstart_time,
+      </if>
+      <if test="vendTime != null" >
+        vend_time,
+      </if>
+      <if test="ustartTime != null" >
+        ustart_time,
+      </if>
+      <if test="uendTime != null" >
+        uend_time,
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer != null" >
+        #{organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="votetime != null" >
+        #{votetime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="vstartTime != null" >
+        #{vstartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vendTime != null" >
+        #{vendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ustartTime != null" >
+        #{ustartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uendTime != null" >
+        #{uendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitUuid != null" >
+        #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chaoxing.osm.bean.po.vote.Vote" >
+    update t_vote
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="organizer != null" >
+        organizer = #{organizer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="votetime != null" >
+        votetime = #{votetime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="vstartTime != null" >
+        vstart_time = #{vstartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vendTime != null" >
+        vend_time = #{vendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ustartTime != null" >
+        ustart_time = #{ustartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uendTime != null" >
+        uend_time = #{uendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid = #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chaoxing.osm.bean.po.vote.Vote" >
+    update t_vote
+    set name = #{name,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      organizer = #{organizer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      votetime = #{votetime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      vstart_time = #{vstartTime,jdbcType=TIMESTAMP},
+      vend_time = #{vendTime,jdbcType=TIMESTAMP},
+      ustart_time = #{ustartTime,jdbcType=TIMESTAMP},
+      uend_time = #{uendTime,jdbcType=TIMESTAMP},
+      unit_uuid = #{unitUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectList" resultMap="BaseResultMap" parameterType="map">
+    select <include refid="Base_Column_List"/>
+    from t_vote
+    <where>
+      is_delete=0
+      <if test="uuid!=''" >
+        unit_uuid = #{uuid}
+      </if>
+    </where>    order by create_time desc
+  </select>
+</mapper>

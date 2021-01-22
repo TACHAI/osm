@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chaoxing.osm.dao.user.UnitMapper" >
+  <resultMap id="BaseResultMap" type="com.chaoxing.osm.bean.po.user.Unit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="unit_uuid" property="unitUuid" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="unit_wx_appid" property="unitWxAppid" jdbcType="VARCHAR" />
+    <result column="unit_wx_key" property="unitWxKey" jdbcType="VARCHAR" />
+    <result column="unit_app" property="unitApp" jdbcType="VARCHAR" />
+    <result column="unit_detail" property="unitDetail" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="creat_date" property="creatDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fid, unit_uuid, unit_name, unit_wx_appid, unit_wx_key, unit_app, unit_detail, 
+    is_delete, creat_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_unit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_unit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chaoxing.osm.bean.po.user.Unit" >
+    insert into t_unit (id, fid, unit_uuid, 
+      unit_name, unit_wx_appid, unit_wx_key, 
+      unit_app, unit_detail, is_delete, 
+      creat_date)
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{unitUuid,jdbcType=VARCHAR}, 
+      #{unitName,jdbcType=VARCHAR}, #{unitWxAppid,jdbcType=VARCHAR}, #{unitWxKey,jdbcType=VARCHAR}, 
+      #{unitApp,jdbcType=VARCHAR}, #{unitDetail,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, 
+      #{creatDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chaoxing.osm.bean.po.user.Unit" >
+    insert into t_unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid,
+      </if>
+      <if test="unitName != null" >
+        unit_name,
+      </if>
+      <if test="unitWxAppid != null" >
+        unit_wx_appid,
+      </if>
+      <if test="unitWxKey != null" >
+        unit_wx_key,
+      </if>
+      <if test="unitApp != null" >
+        unit_app,
+      </if>
+      <if test="unitDetail != null" >
+        unit_detail,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="creatDate != null" >
+        creat_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        #{unitUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWxAppid != null" >
+        #{unitWxAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWxKey != null" >
+        #{unitWxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="unitApp != null" >
+        #{unitApp,jdbcType=VARCHAR},
+      </if>
+      <if test="unitDetail != null" >
+        #{unitDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="creatDate != null" >
+        #{creatDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chaoxing.osm.bean.po.user.Unit" >
+    update t_unit
+    <set >
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid = #{unitUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWxAppid != null" >
+        unit_wx_appid = #{unitWxAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="unitWxKey != null" >
+        unit_wx_key = #{unitWxKey,jdbcType=VARCHAR},
+      </if>
+      <if test="unitApp != null" >
+        unit_app = #{unitApp,jdbcType=VARCHAR},
+      </if>
+      <if test="unitDetail != null" >
+        unit_detail = #{unitDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="creatDate != null" >
+        creat_date = #{creatDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chaoxing.osm.bean.po.user.Unit" >
+    update t_unit
+    set fid = #{fid,jdbcType=INTEGER},
+      unit_uuid = #{unitUuid,jdbcType=VARCHAR},
+      unit_name = #{unitName,jdbcType=VARCHAR},
+      unit_wx_appid = #{unitWxAppid,jdbcType=VARCHAR},
+      unit_wx_key = #{unitWxKey,jdbcType=VARCHAR},
+      unit_app = #{unitApp,jdbcType=VARCHAR},
+      unit_detail = #{unitDetail,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      creat_date = #{creatDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByUUID" parameterType="map">
+     delete from t_unit
+    where unit_uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <select id="selectByName" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_unit
+    where       unit_name like  '%'#{unitName,jdbcType=VARCHAR}'%'
+  </select>
+  <select id="selectByUUID" resultMap="BaseResultMap" parameterType="map">
+    select <include refid="Base_Column_List"/>
+    from t_unit
+    where unit_uuid = #{unitUuid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_unit
+  </select>
+</mapper>

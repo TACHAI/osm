@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chaoxing.osm.dao.live.BackLiveMapper" >
+  <resultMap id="BaseResultMap" type="com.chaoxing.osm.bean.po.live.BackLive" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="replay" property="replay" jdbcType="INTEGER" />
+    <result column="video_stream_name" property="videoStreamName" jdbcType="VARCHAR" />
+    <result column="pull_stream_address" property="pullStreamAddress" jdbcType="VARCHAR" />
+    <result column="rtmp_pull_address" property="rtmpPullAddress" jdbcType="VARCHAR" />
+    <result column="m3u8_pull_address" property="m3u8PullAddress" jdbcType="VARCHAR" />
+    <result column="stram_id" property="stramId" jdbcType="VARCHAR" />
+    <result column="push_stram_address" property="pushStramAddress" jdbcType="VARCHAR" />
+    <result column="file_address" property="fileAddress" jdbcType="VARCHAR" />
+    <result column="mp4_address" property="mp4Address" jdbcType="VARCHAR" />
+    <result column="m3u8_address" property="m3u8Address" jdbcType="VARCHAR" />
+    <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="unit_uuid" property="unitUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, introduction, address, replay, video_stream_name, pull_stream_address, 
+    rtmp_pull_address, m3u8_pull_address, stram_id, push_stram_address, file_address, 
+    mp4_address, m3u8_address, notice_time, create_time, update_time, is_delete, unit_uuid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_back_live
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_back_live
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.chaoxing.osm.bean.po.live.BackLive" >
+    insert into t_back_live (id, title, introduction, 
+      address, replay, video_stream_name, 
+      pull_stream_address, rtmp_pull_address, m3u8_pull_address, 
+      stram_id, push_stram_address, file_address, 
+      mp4_address, m3u8_address, notice_time, 
+      create_time, update_time, is_delete, 
+      unit_uuid)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{replay,jdbcType=INTEGER}, #{videoStreamName,jdbcType=VARCHAR}, 
+      #{pullStreamAddress,jdbcType=VARCHAR}, #{rtmpPullAddress,jdbcType=VARCHAR}, #{m3u8PullAddress,jdbcType=VARCHAR}, 
+      #{stramId,jdbcType=VARCHAR}, #{pushStramAddress,jdbcType=VARCHAR}, #{fileAddress,jdbcType=VARCHAR}, 
+      #{mp4Address,jdbcType=VARCHAR}, #{m3u8Address,jdbcType=VARCHAR}, #{noticeTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, 
+      #{unitUuid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chaoxing.osm.bean.po.live.BackLive" >
+    insert into t_back_live
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="replay != null" >
+        replay,
+      </if>
+      <if test="videoStreamName != null" >
+        video_stream_name,
+      </if>
+      <if test="pullStreamAddress != null" >
+        pull_stream_address,
+      </if>
+      <if test="rtmpPullAddress != null" >
+        rtmp_pull_address,
+      </if>
+      <if test="m3u8PullAddress != null" >
+        m3u8_pull_address,
+      </if>
+      <if test="stramId != null" >
+        stram_id,
+      </if>
+      <if test="pushStramAddress != null" >
+        push_stram_address,
+      </if>
+      <if test="fileAddress != null" >
+        file_address,
+      </if>
+      <if test="mp4Address != null" >
+        mp4_address,
+      </if>
+      <if test="m3u8Address != null" >
+        m3u8_address,
+      </if>
+      <if test="noticeTime != null" >
+        notice_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        #{replay,jdbcType=INTEGER},
+      </if>
+      <if test="videoStreamName != null" >
+        #{videoStreamName,jdbcType=VARCHAR},
+      </if>
+      <if test="pullStreamAddress != null" >
+        #{pullStreamAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rtmpPullAddress != null" >
+        #{rtmpPullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="m3u8PullAddress != null" >
+        #{m3u8PullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stramId != null" >
+        #{stramId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushStramAddress != null" >
+        #{pushStramAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fileAddress != null" >
+        #{fileAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mp4Address != null" >
+        #{mp4Address,jdbcType=VARCHAR},
+      </if>
+      <if test="m3u8Address != null" >
+        #{m3u8Address,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeTime != null" >
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chaoxing.osm.bean.po.live.BackLive" >
+    update t_back_live
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="replay != null" >
+        replay = #{replay,jdbcType=INTEGER},
+      </if>
+      <if test="videoStreamName != null" >
+        video_stream_name = #{videoStreamName,jdbcType=VARCHAR},
+      </if>
+      <if test="pullStreamAddress != null" >
+        pull_stream_address = #{pullStreamAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rtmpPullAddress != null" >
+        rtmp_pull_address = #{rtmpPullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="m3u8PullAddress != null" >
+        m3u8_pull_address = #{m3u8PullAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stramId != null" >
+        stram_id = #{stramId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushStramAddress != null" >
+        push_stram_address = #{pushStramAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fileAddress != null" >
+        file_address = #{fileAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mp4Address != null" >
+        mp4_address = #{mp4Address,jdbcType=VARCHAR},
+      </if>
+      <if test="m3u8Address != null" >
+        m3u8_address = #{m3u8Address,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeTime != null" >
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="unitUuid != null" >
+        unit_uuid = #{unitUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chaoxing.osm.bean.po.live.BackLive" >
+    update t_back_live
+    set title = #{title,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      replay = #{replay,jdbcType=INTEGER},
+      video_stream_name = #{videoStreamName,jdbcType=VARCHAR},
+      pull_stream_address = #{pullStreamAddress,jdbcType=VARCHAR},
+      rtmp_pull_address = #{rtmpPullAddress,jdbcType=VARCHAR},
+      m3u8_pull_address = #{m3u8PullAddress,jdbcType=VARCHAR},
+      stram_id = #{stramId,jdbcType=VARCHAR},
+      push_stram_address = #{pushStramAddress,jdbcType=VARCHAR},
+      file_address = #{fileAddress,jdbcType=VARCHAR},
+      mp4_address = #{mp4Address,jdbcType=VARCHAR},
+      m3u8_address = #{m3u8Address,jdbcType=VARCHAR},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      unit_uuid = #{unitUuid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectList" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from t_back_live
+    <where>
+      <if test="liveName!=''" >
+        title like "%"#{liveName}"%"
+      </if>
+      <if test="uuid!=''">
+      and   unit_uuid = #{uuid,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+</mapper>
