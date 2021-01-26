@@ -27,7 +27,7 @@ public interface IunitService {
 
     ServerResponse<Unit> selectByUUID(String uuid);
 
-    ServerResponse<List<Unit>> selectAll();
+    ServerResponse<List<Unit>> selectAll(String unitName);
 
     ServerResponse<Map<String,String>> allApps( );
 }

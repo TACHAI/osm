@@ -24,5 +24,5 @@ public interface UnitMapper {
 
     Unit selectByUUID(@Param("unitUuid") String uuid);
 
-    List<Unit> selectAll();
+    List<Unit> selectAll(@Param("unitName") String unitName);
 }

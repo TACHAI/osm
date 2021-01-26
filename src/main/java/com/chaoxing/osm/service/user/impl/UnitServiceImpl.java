@@ -42,7 +42,7 @@ public class UnitServiceImpl implements IunitService {
     public ServerResponse<String> deleteUnitById(Integer id) {
         Unit unit = unitMapper.selectByPrimaryKey(id);
         if(unit!=null){
-            unit.setIsDelete(ResponseString.UN_DELETE);
+            unit.setIsDelete(ResponseString.IS_DELETE);
             unitMapper.updateByPrimaryKeySelective(unit);
             return ServerResponse.createBySuccessMessage(ResponseString.DELETE_SUCCESS);
         }
@@ -95,8 +95,8 @@ public class UnitServiceImpl implements IunitService {
     }
 
     @Override
-    public ServerResponse<List<Unit>> selectAll() {
-        List<Unit> list = unitMapper.selectAll();
+    public ServerResponse<List<Unit>> selectAll(String  unitName) {
+        List<Unit> list = unitMapper.selectAll(unitName);
         return ServerResponse.createBySuccess(list);
     }
 

@@ -34,11 +34,12 @@ public class UnitController {
    @ApiOperation("单位分页")
    @UserLoginToken
    @GetMapping("listByPage")
-   public PageVO list(@RequestParam(value = "pageSize",defaultValue = "5")int pageSize, @RequestParam(value = "pageNumber",defaultValue = "1")int pageNumber){
+   public PageVO list(@RequestParam(value = "pageSize",defaultValue = "5")int pageSize,
+                      @RequestParam(value = "pageNumber",defaultValue = "1")int pageNumber,String unitName){
 
       Page page = PageHelper.startPage(pageNumber,pageSize);
       //recommend 100是banner 推荐200
-      List<Unit> list =  unitService.selectAll().getData();
+      List<Unit> list =  unitService.selectAll(unitName).getData();
       if(list !=null){
          Long total = page.getTotal();
          PageVO p =new PageVO();

@@ -3,6 +3,7 @@ package com.chaoxing.osm.controller.back;
 
 import com.chaoxing.osm.bean.po.user.User;
 import com.chaoxing.osm.common.ServerResponse;
+import com.chaoxing.osm.security.UserLoginToken;
 import com.chaoxing.osm.service.user.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,7 +41,10 @@ public class UserController {
         return userService.login(username, password);
     }
 
+
+
     @ApiOperation(value = "修改密码")
+    @UserLoginToken
     @PostMapping("updatePassword")
     public ServerResponse<String> updatePassword( String username, String passwordold, String passwordNew) {
         User user = userService.login(username, passwordold).getData();
@@ -66,5 +70,19 @@ public class UserController {
         return ServerResponse.createBySuccessMessage("退出成功");
 
 //        return ServerResponse.createByErrorMessage("session失效");
+    }
+
+    @ApiOperation(value = "添加用户")
+    @UserLoginToken
+    @PostMapping("addUser")
+    public ServerResponse<String> updatePassword( User user) {
+        return userService.insertUser(user);
+    }
+
+    @ApiOperation(value = "修改用户")
+    @UserLoginToken
+    @PostMapping("updateUser")
+    public ServerResponse<String> updateUser( User user) {
+        return userService.updateUser(user);
     }
 }

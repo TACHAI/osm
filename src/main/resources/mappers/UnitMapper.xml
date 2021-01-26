@@ -167,5 +167,11 @@
   <select id="selectAll" parameterType="map" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"/>
     from t_unit
+    <where>
+      is_delete=0
+      <if test="unitName!='' and unitName!=null">
+       and  unit_name like  "%"#{unitName,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
   </select>
 </mapper>

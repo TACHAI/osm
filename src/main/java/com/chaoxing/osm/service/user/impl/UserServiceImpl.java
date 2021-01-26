@@ -62,10 +62,13 @@ public class UserServiceImpl implements IuserService {
         return ServerResponse.createByErrorMessage(ResponseString.PARAMS_IS_EMPTY);
     }
 
-    // TODO 有需求再做
     @Override
     public ServerResponse<String> insertUser(User user) {
-        return null;
+        int res = userMapper.insertSelective(user);
+        if(res >0){
+            return ServerResponse.createBySuccessMessage(ResponseString.ADD_SUCCESS);
+        }
+        return ServerResponse.createByErrorMessage(ResponseString.ADD_FAIL);
 
     }
     /**
